@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Product;
-use Doctrine\DBAL\Schema\View;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function getAllProducts(Request $request){
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
+    {
         $products = Product::orderBy('id','DESC');
 
         if ($request->id) {
@@ -36,15 +41,21 @@ class ProductController extends Controller
             $products->where('stock','<', $request->stock);
         }
 
-        
-        
 
         $products = $products->get();
         return view('products-page')->with('products',$products );
     }
 
+   
 
-    public function saveProducts(Request $request){
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
         Product::create([
             'name'=> $request->name,
             'category'=> $request->category,
@@ -53,37 +64,52 @@ class ProductController extends Controller
             'stock'=> $request->stock,
         ]);
        
-        return redirect()->route('products.all'); 
-
+        return redirect()->route('products.index'); 
     }
 
 
-    //update
-    public function updateProducts(Request $request,$id){
-         Product::where('id', $id)->update([
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $product_to_edit = Product::where('id', $id)->firstOrfail();
+        return view('edit-form')->with('product', $product_to_edit);
+        return redirect()->route('products.index'); 
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        Product::where('id', $id)->update([
             'name'      => $request->name,
             'price'     => $request->price,
             'sale'      => $request->sale,
             'stock'      => $request->stock,
-            'category'  =>$request->category,
          ]);
 
-        //  return redirect()->back();
-        return redirect()->route('products.all'); 
+        return redirect()->route('products.index'); 
     }
 
-    //edit
-    public function editProducts($id){
-        $product_to_edit = Product::where('id', $id)->firstOrfail();
-        return view('edit-form')->with('product', $product_to_edit);
-        return redirect()->back();
-    }
-
-
-    //delete
-    public function deleteProducts($id){
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
         Product::where('id', $id)->delete();
-        return redirect()->back();
+        return redirect()->route('products.index');
     }
-    
 }

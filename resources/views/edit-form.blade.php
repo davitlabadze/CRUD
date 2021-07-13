@@ -1,5 +1,4 @@
-
-@extends('main')
+@extends('layouts.main')
 
 
 @section('title','edit product')
@@ -11,7 +10,8 @@
         <h3>edit product</h3>
     </div>
 
-    <form action="{{ route('products.update',['id' => $product->id]) }}" method="POST">
+    <form action="{{ route('products.update',['product' => $product->id]) }}" method="POST">
+        <input type="hidden" name="_method" value="PUT">
 
         @csrf
         <div class="card-body">
@@ -25,8 +25,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label>stok</label>
-                    <input class="form-control" type="number" name="stok"  value="{{ $product->stok }}" placeholder="Enter stok">
+                    <label>stock</label>
+                    <input class="form-control" type="number" name="stock"  value="{{ $product->stock }}" placeholder="Enter stock">
                 </div>
 
                 <div class="form-group">

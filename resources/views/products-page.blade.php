@@ -1,5 +1,5 @@
 
-@extends('main')
+@extends('layouts.main')
 
 
 @section('content')
@@ -11,7 +11,7 @@
 
     <div class="card-body">
         <table class="table ">
-            <form action="{{ route('products.all') }}">
+            <form action="{{ route('products.index') }}">
                 <tr>
                     <th><input type="number" name="id"       value="{{ request('id') }}"placeholder="Enter ID"class="form-control"></th>
                     <th><input type="text"   name="name"     value="{{ request('name') }}"placeholder="Enter Name" class="form-control"></th>
@@ -20,7 +20,7 @@
                     <th><input type="number" name="sale"     value="{{ request('sale') }}"placeholder="Enter Sale" class="form-control"></th>
                     <th><input type="number" name="stock"     value="{{ request('stock') }}"placeholder="Enter stock" class="form-control"></th>
                     <th><button class="btn btn-primary">filter</button></th>
-                    <th><a href="{{ route('products.all') }}" type="reset" class="btn btn-danger">clear</a></th>
+                    <th><a href="{{ route('products.index') }}" type="reset" class="btn btn-danger">clear</a></th>
                 </tr>
             </form>
 
@@ -35,7 +35,7 @@
                 <th>Actions</th>
             </thead>
             <tbody>
-                <form action="{{ route('products.save') }}" method="POST">
+                <form action="{{ route('products.store') }}" method="POST">
                     @csrf
                     <tr>
                         <td colspan="2"><input type="text"  name="name" class="form-control"/></td>
@@ -64,15 +64,18 @@
                     <td>{{$pr->created_at}}</td>
                 
                     <td>
-                        <form action="{{ route('products.delete', ['id' => $pr->id]) }}" method="POST">
+                        <form action="{{ route('products.destroy', ['product' => $pr->id]) }}" method="POST">
                             @csrf
-                            <input type="hidden" name="product_id" value="{{ $pr->id }}">
+                            <input type="hidden" name="_method" value="DELETE">
                             <button class="btn btn-danger">delete</button>
                         </form>
                     </td>
                     <td>
-                        
-                       <a href="{{ route('products.edit',['id'=>$pr->id])}}">edit</a>
+                        <form action="{{ route('products.edit',['product'=>$pr->id])}}">
+                            @csrf
+                            <button class="btn btn-warning">edit</button>
+                        </form>
+                       {{-- <a href="{{ route('products.edit',['product'=>$pr->id])}}">edit</a> --}}
                     </td>
                 </tr>
             @endforeach
