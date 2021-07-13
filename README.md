@@ -60,3 +60,14 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+## How to run 
+
+1. Either fork or download the app and open the folder in the cli
+2. Install all dependencies using the `composer i` command
+3. Run `cp .env.example .env` next Run `php artisan key:generate`
+4. Enter the correction of your database name in the .env file, etc.
+5. Run the command `php artisan migrate`
+6. Run the command `php artisan serve`
+7. First Route http: // localhost: 8000 / Product / All Of your localhost is        listening to another port then add products / all to it
