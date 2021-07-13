@@ -70,4 +70,4 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 4. Enter the correction of your database name in the .env file, etc.
 5. Run the command `php artisan migrate`
 6. Run the command `php artisan serve`
-7. First Route http: // localhost: 8000 / Product / All Of your localhost is        listening to another port then add products / all to it
+7. First Route http://localhost:8000/Product/All Of your localhost is        listening to another port then add `products/all` to it
