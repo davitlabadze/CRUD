@@ -20,5 +20,5 @@
 
 ## What the app looks like
 
-![alt_text](https://github.com/davitlabadze/CRUD/blob/master/app%20screen/crud-update.png)
+![alt_text](https://github.com/davitlabadze/CRUD/blob/master/app%20screen/crud.png)
 ![alt_text](https://github.com/davitlabadze/CRUD/blob/master/app%20screen/crud-update.png)
