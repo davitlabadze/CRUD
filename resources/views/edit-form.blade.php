@@ -1,13 +1,9 @@
 @extends('layouts.main')
-
-
 @section('title','edit product')
-    
-
 @section('content')
 <div class="card"></div>
     <div class="card-header">
-        <h3>edit product</h3>
+        <h3>Edit product</h3>
     </div>
 
     <form action="{{ route('products.update',['product' => $product->id]) }}" method="POST">

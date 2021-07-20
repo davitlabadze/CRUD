@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
+
 class ProductController extends Controller
 {
     /**
@@ -16,6 +17,7 @@ class ProductController extends Controller
     {
         $products = Product::orderBy('id','DESC');
 
+        
         if ($request->id) {
             $products->where('id',$request->id);
         }
@@ -41,9 +43,9 @@ class ProductController extends Controller
             $products->where('stock','<', $request->stock);
         }
 
-
         $products = $products->get();
-        return view('products-page')->with('products',$products );
+        
+        return view('products-page',['products'=>$products]);
     }
 
    
@@ -78,7 +80,7 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product_to_edit = Product::where('id', $id)->firstOrfail();
-        return view('edit-form')->with('product', $product_to_edit);
+        return view('edit-form',['product' => $product_to_edit]);
         return redirect()->route('products.index'); 
     }
 
@@ -93,9 +95,10 @@ class ProductController extends Controller
     {
         Product::where('id', $id)->update([
             'name'      => $request->name,
+            'category'  => $request->category,
             'price'     => $request->price,
             'sale'      => $request->sale,
-            'stock'      => $request->stock,
+            'stock'     => $request->stock,
          ]);
 
         return redirect()->route('products.index'); 
