@@ -69,5 +69,6 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 3. Run `cp .env.example .env` next Run `php artisan key:generate`
 4. Enter the correction of your database name in the .env file, etc.
 5. Run the command `php artisan migrate`
-6. Run the command `php artisan serve`
-7. First Route http://localhost:8000/products Of your localhost is listening to another port then add `products` to it
+6. If you want to add predefined products, Run the command `php artisan db:seed`
+7. Run the command `php artisan serve`
+8. First Route http://localhost:8000/products Of your localhost is listening to another port then add `products` to it
