@@ -17,3 +17,8 @@
 6. If you want to add predefined products, Run the command `php artisan db:seed`
 7. Run the command `php artisan serve`
 8. First Route http://localhost:8000/products Of your localhost is listening to another port then add `products` to it
+
+## What the app looks like
+
+![alt_text](https://github.com/davitlabadze/CRUD/CRUD/master/app%20screen/crud.png)
+![alt_text](https://github.com/davitlabadze/CRUD/CRUD/master/app%20screen/crud-update.png)
